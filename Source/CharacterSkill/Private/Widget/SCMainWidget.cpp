@@ -65,7 +65,6 @@ void USCMainWidget::NativeConstruct()
 
 	UpdateWMagicInfo();
 	UpdateBMagicInfo();
-	UpdateCooldownProgressBar(0.f);
 	ShowReadyText();
 }
 
@@ -180,6 +179,10 @@ void USCMainWidget::UpdateWMagicInfo()
 
 void USCMainWidget::ShowReadyText()
 {
+	if (PB_WMagic_Cooldown->Percent > 0.01f)
+	{
+		return;
+	}
 	if (!bShow)
 	{
 		Text_WMagic->SetVisibility(ESlateVisibility::Hidden);
